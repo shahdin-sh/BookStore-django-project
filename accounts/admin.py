@@ -17,5 +17,7 @@ class CustomUserAdmin(UserAdmin):
         (None, {'fields': ('age',)}),
     )
 
+# git is so powerful
+
 
 admin.site.register(CustomUser, CustomUserAdmin)
