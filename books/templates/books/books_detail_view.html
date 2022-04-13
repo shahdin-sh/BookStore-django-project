@@ -9,5 +9,6 @@
     <P>{{ books_detail.translator }}</P>
     <p>  {{ books_detail.description }}</p>
     <p>  {{ books_detail.price }}</p>
+     <a href="{% url 'update_books' books_detail.id %}"><button>ویرایش کتاب</button></a>
     <a href="{% url 'books_list'%}"><button>بازگشت به لیست کتاب ها</button></a>
 {% endblock %}
