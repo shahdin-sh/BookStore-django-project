@@ -1,0 +1,23 @@
+{% extends '_base.html' %}
+
+{% block page_title%}
+    حذف کتاب
+{% endblock page_title %}
+
+{% block content %}
+     <div class="container">
+     <form action="" method="post">
+         {% csrf_token %}
+         <p>ایا از حذف کتاب اطمنیان دارید؟{{ book.title}}</p>
+         <input type="submit" value="بله">
+         <a href="{% url 'books_list' %}"><button>بازگشت به لیست کتاب ها</button></a>
+    </form>
+   </div>
+    <style>
+        .container{
+           background-color: whitesmoke;
+            margin-top: 5%;
+            text-align: center;
+        }
+    </style>
+{% endblock %}
