@@ -5,9 +5,10 @@
 
 {% block content %}
   <h1>HOME PAGE</h1>
-  {% if user.is_authenticated %}
-      <P>Welcome {{ user.username }} | <a href="{% url 'logout' %}">Log out</a></P>
-  {% else %}
-      <a href="{% url "login" %}">Log In</a> | <a href="{% url 'signup' %}">Sign up</a>
-  {% endif %}
 {% endblock %}
+ {% for i in books %}
+        <P><a href="{{ i.get_absolute_url }}">{{ i.title }}</a></P>
+        <p>{{ i.author }}</p>
+        <p>{{ i.price}}$</p>
+    {% endfor %}
+    <a href="{% url 'create_books' %}"><button>ایجاد کتاب</button></a>
