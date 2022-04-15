@@ -4,6 +4,7 @@ from django.shortcuts import render
 from .forms import BookForm
 from django.urls import reverse_lazy
 
+
 def books_list_view(request):
     books = Book.objects.all()
     return render(request, 'books/books_list_view.html', {'books': books})

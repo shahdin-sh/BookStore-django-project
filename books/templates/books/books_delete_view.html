@@ -5,16 +5,16 @@
 {% endblock page_title %}
 
 {% block content %}
-     <div class="container">
+     <div class="Container">
      <form action="" method="post">
          {% csrf_token %}
          <p>ایا از حذف کتاب اطمنیان دارید؟{{ book.title}}</p>
          <input type="submit" value="بله">
-         <a href="{% url 'books_list' %}"><button>بازگشت به لیست کتاب ها</button></a>
     </form>
+    <a href="{% url 'books_list' %}"><button>بازگشت به لیست کتاب ها</button></a>
    </div>
     <style>
-        .container{
+        .Container{
            background-color: whitesmoke;
             margin-top: 5%;
             text-align: center;
