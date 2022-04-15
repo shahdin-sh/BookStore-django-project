@@ -8,6 +8,7 @@ class Book(models.Model):
     author = models.CharField(max_length=50)
     translator = models.CharField(max_length=50)
     description = models.TextField()
+    publisher = models.CharField(max_length=50, null=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
 
     def __str__(self):
