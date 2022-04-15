@@ -7,7 +7,7 @@
     <div class="container mt-5" dir="rtl">
         <div class="">
             <div class="">
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center" id="main_div">
                     <div class="row w-sm-75 w-100">
                         <div class="col-xs-12 col-md-3 d-flex justify-content-center">
                             <div>
@@ -19,7 +19,7 @@
                             <h1>{{ books_detail.title }}</h1>
                             <h5 class="small my-1"><span class="text-muted">نویسنده: </span>{{ books_detail.author }}</h5>
                             <h5 class="small my-1"><span class="text-muted">مترجم: </span>{{ books_detail.translator }}</h5>
-                            <h5 class="small my-1"><span class="text-muted">انتشارات: </span>هوزمزد</h5>
+                            <h5 class="small my-1"><span class="text-muted">انتشارات: </span>{{ books_detail.publisher }}</h5>
                         </div>
                         <div class="col-xs-12 col-md-3 d-flex flex-column">
                             <h3 class="align-self-center pt-2 text-muted align-self-md-end">
@@ -30,13 +30,8 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                    <div class="my-3 p-5 w-sm-75 w-100">
-                        «زمانی‌که سازمان‌های آمریکایی ناامیدانه در صدد انرژی دادن به کارکنان و پرورش مدیران در تمام سطح‌ها
-                        بودند، کاوی فلسفه‌ای نیرو بخش را در زندگی معرفی کرد که موفقیت در کار و تجارت را نیز ضمانت می‌کرد...
-                        این روش، ترکیبی از خرد، احساسات و تجربه‌های کاربردی بود.» این جملات را «رزابث ماس کانتر» نویسنده‌ی
-                        آمریکایی درباره‎‌ی کتاب هفت عادت مردمان موثر گفته است. کتاب مشهوری که هرکسی که چیزهای بیشتری از
-                        زندگی می‌خواهد باید آن را بخواند، به کار ببندد و در نهایت از معجزه‌ای که در زندگی‌اش اتفاق می‌افتد
-                        لذت ببرد.
+                    <div class="my-3 p-5 w-sm-75 w-100" id="description_div">
+                       {{ books_detail.description }}
                     </div>
                 </div>
 
@@ -88,6 +83,14 @@
             </div>
         </div>
     </div>
+    <style>
+        #main_div {
+            background-color: whitesmoke;
+        }
+        #description_div{
+            background-color: whitesmoke;
+        }
+    </style>
      <a href="{% url 'update_books' books_detail.id %}"><button>ویرایش کتاب</button></a>
      <a href="{% url 'delete_books' books_detail.id %}"><button>حذف کتاب</button></a>
 {% endblock %}
