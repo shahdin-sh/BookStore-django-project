@@ -20,6 +20,8 @@
                             <h5 class="small my-1"><span class="text-muted">نویسنده: </span>{{ books_detail.author }}</h5>
                             <h5 class="small my-1"><span class="text-muted">مترجم: </span>{{ books_detail.translator }}</h5>
                             <h5 class="small my-1"><span class="text-muted">انتشارات: </span>{{ books_detail.publisher }}</h5>
+                            <a href="{% url 'update_books' books_detail.id %}"><button class="btn-success">ویرایش کتاب</button></a>
+                            <a href="{% url 'delete_books' books_detail.id %}"><button class="btn-danger">حذف کتاب</button></a>
                         </div>
                         <div class="col-xs-12 col-md-3 d-flex flex-column">
                             <h3 class="align-self-center pt-2 text-muted align-self-md-end">
@@ -91,6 +93,4 @@
             background-color: whitesmoke;
         }
     </style>
-     <a href="{% url 'update_books' books_detail.id %}"><button>ویرایش کتاب</button></a>
-     <a href="{% url 'delete_books' books_detail.id %}"><button>حذف کتاب</button></a>
 {% endblock %}
