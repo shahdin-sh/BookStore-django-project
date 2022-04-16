@@ -2,11 +2,11 @@
 
 {% load crispy_forms_tags %}
 {% block page_title%}
-    Sign up
+   ثبت نام
 {% endblock page_title %}
 
 {% block content %}
-   <div class="container">
+   <div class="Container">
      <form action="" method="post">
     {% csrf_token%}
     {{ form|crispy }}
@@ -14,7 +14,7 @@
     </form>
    </div>
     <style>
-        .container{
+        .Container{
            background-color: whitesmoke;
             margin-top: 5%;
             text-align: center;
