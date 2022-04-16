@@ -4,7 +4,6 @@ from django.shortcuts import render
 from .forms import BookForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.decorators import permission_required
 
 
 @login_required
@@ -34,3 +33,12 @@ class BookDeleteView(generic.DeleteView):
     model = Book
     template_name = 'books/books_delete_view.html'
     success_url = reverse_lazy('books_list')
+
+
+@login_required
+def user_books_view(request):
+    current_user = request.user.id
+    books = Book.objects.all().filter(books_author_id=current_user)
+    dic = {'user_books': books,
+           }
+    return render(request, 'books/user_books_view.html', dic)
