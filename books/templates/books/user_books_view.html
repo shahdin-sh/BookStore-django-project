@@ -4,8 +4,7 @@
 {% endblock page_title %}
 
 {% block content %}
-    {% for i in user_books %}
-    {% if i.books_author_id != user.id %}
+    {% if user_books == False %}
         <div class="Container">
             <h3>شما در حال حاضر هیچ کتابی را ثبت نکردید، برای ثبت اولین کتاب   <a href="{% url 'create_books' %}">کلیک</a> نمایید </h3>
         </div>
@@ -16,7 +15,8 @@
                 text-align: center;
             }
         </style>
-    {% else %}
+    {% elif user_books == True %}
+        {% for i in books %}
         <div class="container mt-4">
             <div class="row flex-row-reverse justify-content-md-center">
                 <div class="card m-2" style="max-width: 45%">
@@ -38,6 +38,6 @@
                 </div>
             </div>
         </div>
+        {% endfor %}
     {% endif %}
-    {% endfor %}
 {% endblock %}

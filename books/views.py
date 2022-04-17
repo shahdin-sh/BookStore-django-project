@@ -38,7 +38,9 @@ class BookDeleteView(generic.DeleteView):
 @login_required
 def user_books_view(request):
     current_user = request.user.id
-    books = Book.objects.all().filter(books_author_id=current_user)
+    books = Book.objects.all().filter(books_author_id=current_user).exists()
+    not_bool_books = Book.objects.all()
     dic = {'user_books': books,
+           'books':  not_bool_books
            }
     return render(request, 'books/user_books_view.html', dic)
