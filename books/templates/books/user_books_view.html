@@ -5,7 +5,7 @@
 
 {% block content %}
     {% for i in user_books %}
-    {% if user.id == 4 %}
+    {% if i.books_author_id != user.id %}
         <div class="Container">
             <h3>شما در حال حاضر هیچ کتابی را ثبت نکردید، برای ثبت اولین کتاب   <a href="{% url 'create_books' %}">کلیک</a> نمایید </h3>
         </div>
