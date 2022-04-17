@@ -1,10 +1,12 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block page_title%}
     ورود
 {% endblock page_title %}
 
 {% block content %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <div class="d-flex justify-content-center mt-5" dir="rtl">
         <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-xs-6 bg-white m-3 m-sm-5 border rounded px-4 pt-4 pb-3 shadow">
             <form method="post">
