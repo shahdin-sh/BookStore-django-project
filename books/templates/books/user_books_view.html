@@ -17,27 +17,36 @@
         </style>
     {% elif user_books == True %}
         {% for i in books %}
-        <div class="container mt-4">
-            <div class="row flex-row-reverse justify-content-md-center">
-                <div class="card m-2" style="max-width: 45%">
-                    <div class="row g-0 h-100" dir="rtl">
-                        <div class="col-md-4">
-                            <img src="https://newcdn.fidibo.com/images/books/69249_94233_normal.jpg"
-                                 class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8 h-100">
-                            <div class="d-flex flex-column justify-content-between h-100">
-                                <div class="card-body">
-                                    <h3 class="card-title"><strong><a href="{{ i.get_absolute_url }}">{{ i.title }}</a></strong></h3>
-                                    <p class="card-text pt-3">{{ i.description }}</p>
-                                    <p class="text-muted">نویسنده: {{ i.author }}</p>
+        {% if i.books_author_id == user.id %}
+            <div class="container mt-4">
+                <div class="row flex-row-reverse justify-content-md-center">
+                    <div class="card m-2" style="max-width: 45%">
+                        <div class="row g-0 h-100" dir="rtl">
+                            <div class="col-md-4">
+                                {% if i.book_cover %}
+                                  <img id="pic" src="{{ i.book_cover.url }}"
+                                    class="img-fluid rounded-start" alt="...">
+                                {% endif %}
+                            </div>
+                            <div class="col-md-8 h-100">
+                                <div class="d-flex flex-column justify-content-between h-100">
+                                    <div class="card-body">
+                                        <h3 class="card-title"><strong><a href="{{ i.get_absolute_url }}">{{ i.title }}</a></strong></h3>
+                                        <p class="card-text pt-3">{{ i.description }}</p>
+                                        <p class="text-muted">نویسنده: {{ i.author }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endif %}
         {% endfor %}
     {% endif %}
+     <style>
+        #pic{
+            border: 2px solid black;
+        }
+    </style>
 {% endblock %}

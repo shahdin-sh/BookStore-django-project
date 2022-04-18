@@ -1,6 +1,8 @@
 from django.urls import path
 from .views import *
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', books_list_view, name='books_list'),
@@ -9,4 +11,4 @@ urlpatterns = [
     path('<int:pk>/update', login_required(BookUpdateView.as_view()), name='update_books'),
     path('<int:pk>/delete', login_required(BookDeleteView.as_view()), name='delete_books'),
     path('mybooks/', user_books_view, name='user_books')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

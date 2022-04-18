@@ -11,6 +11,7 @@ class Book(models.Model):
     publisher = models.CharField(max_length=50, null=True, verbose_name='انتشارات')
     price = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='قیمت')
     books_author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True, verbose_name='کاربر')
+    book_cover = models.ImageField(upload_to='book_covers/', blank=True)
 
     def __str__(self):
         return self.title
