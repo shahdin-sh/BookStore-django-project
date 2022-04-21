@@ -4,12 +4,19 @@ from django.shortcuts import render
 from .forms import BookForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 
 @login_required
 def books_list_view(request):
     books = Book.objects.all()
-    return render(request, 'books/books_list_view.html', {'books': books})
+    paginator = Paginator(books, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    dic = {
+        'books': page_obj,
+    }
+    return render(request, 'books/books_list_view.html', dic)
 
 
 @login_required
@@ -38,9 +45,12 @@ class BookDeleteView(generic.DeleteView):
 @login_required
 def user_books_view(request):
     current_user = request.user.id
-    books = Book.objects.all().filter(books_author_id=current_user).exists()
-    not_bool_books = Book.objects.all()
-    dic = {'user_books': books,
-           'books':  not_bool_books
+    books_bool = Book.objects.all().filter(books_author_id=current_user).exists()
+    books_pg = Book.objects.all().filter(books_author_id=current_user)
+    paginator = Paginator(books_pg, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    dic = {'user_books_auth': books_bool,
+           'books': page_obj,
            }
     return render(request, 'books/user_books_view.html', dic)
