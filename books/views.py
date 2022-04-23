@@ -8,7 +8,6 @@ from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
 
 
-@login_required
 def books_list_view(request):
     books = Book.objects.all()
     paginator = Paginator(books, 4)
@@ -20,7 +19,6 @@ def books_list_view(request):
     return render(request, 'books/books_list_view.html', dic)
 
 
-@login_required
 def books_detail_view(request, pk):
     books_detail = get_object_or_404(Book, pk=pk)
     # getting_comments
