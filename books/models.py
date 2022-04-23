@@ -23,7 +23,7 @@ class Book(models.Model):
 class Comment(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, verbose_name='کاربر')
     comment_text = models.TextField(verbose_name='متن نظر')
-    book = models.ForeignKey(Book, on_delete=models.CASCADE, verbose_name='کتاب')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, verbose_name='کتاب', related_name='comments')
     datetime_comment = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

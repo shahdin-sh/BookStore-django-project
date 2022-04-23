@@ -1,10 +1,11 @@
 from django.views import generic
-from .models import Book
+from .models import Book, Comment
 from django.shortcuts import render
 from .forms import BookForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.shortcuts import get_object_or_404
 
 
 @login_required
@@ -21,8 +22,14 @@ def books_list_view(request):
 
 @login_required
 def books_detail_view(request, pk):
-    books_detail = Book.objects.get(pk=pk)
-    return render(request, 'books/books_detail_view.html', {'books_detail': books_detail})
+    books_detail = get_object_or_404(Book, pk=pk)
+    # getting_comments
+    comments = books_detail.comments.all()
+    dic = {
+        'books_detail': books_detail,
+        'comments': comments,
+    }
+    return render(request, 'books/books_detail_view.html', dic)
 
 
 class BookCreateView(generic.CreateView):
