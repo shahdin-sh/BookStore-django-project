@@ -1,0 +1,29 @@
+.footer{
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    direction: rtl;
+    margin-top: 10%;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: wheat;
+}
+.icon{
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 1.5rem;
+    gap: 5%;
+
+}
+.icon a{
+    text-decoration: none;
+    font-size: 3rem;
+    margin-bottom: 3%;
+}
+@media screen and (min-width:600px) {
+    .icon{
+        font-size: 3rem;
+        gap: 2%;
+        margin-left: 5%;
+    }
+}
