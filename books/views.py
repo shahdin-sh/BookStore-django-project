@@ -1,7 +1,7 @@
 from django.views import generic
 from .models import Book, Comment
 from django.shortcuts import render
-from .forms import BookForm
+from .forms import BookForm, CommentForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -23,9 +23,20 @@ def books_detail_view(request, pk):
     books_detail = get_object_or_404(Book, pk=pk)
     # getting_comments
     comments = books_detail.comments.all()
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.book = books_detail
+            new_comment.user = request.user
+            new_comment.save()
+            comment_form = CommentForm()
+    else:
+        comment_form = CommentForm()
     dic = {
         'books_detail': books_detail,
         'comments': comments,
+        'comment_form': comment_form
     }
     return render(request, 'books/books_detail_view.html', dic)
 
