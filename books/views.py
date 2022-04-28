@@ -70,3 +70,11 @@ def user_books_view(request):
            'books': page_obj,
            }
     return render(request, 'books/user_books_view.html', dic)
+
+
+class CommentUpdateView(generic.UpdateView):
+    pass
+
+
+class CommentDeleteView(generic.DeleteView):
+    pass

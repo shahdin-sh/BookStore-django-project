@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% block page_title%}
+    ویرایش نظر
+{% endblock page_title %}
+
+{% block content %}
+     <div class="Container">
+     <form action="" method="post">
+    {% csrf_token%}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-success">ویرایش نظر</button>
+    </form>
+   </div>
+    <style>
+        .Container{
+           background-color: whitesmoke;
+            margin-top: 5%;
+            text-align: center;
+        }
+    </style>
+{% endblock %}

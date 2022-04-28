@@ -25,6 +25,8 @@ class Comment(models.Model):
     comment_text = models.TextField(verbose_name='متن نظر')
     book = models.ForeignKey(Book, on_delete=models.CASCADE, verbose_name='کتاب', related_name='comments')
     datetime_comment = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True, verbose_name='فعال')
+    recommended = models.BooleanField(default=True, verbose_name='توصیه می شود')
 
     def __str__(self):
         return self.comment_text
