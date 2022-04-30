@@ -1,23 +1,26 @@
 {% extends '_base.html' %}
 
 {% block page_title%}
-    حذف کتاب
+    حذف نظر
 {% endblock page_title %}
 
 {% block content %}
      <div class="Container">
      <form action="" method="post">
          {% csrf_token %}
-         <p>ایا از حذف این نظر اطمنیان دارید؟</p>
+         <p>ایا از حذف نظر اطمنیان دارید؟</p>
          <input type="submit" value="بله">
     </form>
-    <a href="{% url 'homepage' %}"><button>بازگشت خانه</button></a>
+    <a href="{% url 'books_detail' books.id %}"><button>بازگشت به صفحه قبل</button></a>
    </div>
     <style>
         .Container{
            background-color: whitesmoke;
             margin-top: 5%;
             text-align: center;
+            font-size: 1.5rem;
+            width:100%;
+            height: 100%;
         }
     </style>
 {% endblock %}

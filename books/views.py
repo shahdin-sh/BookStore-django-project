@@ -72,6 +72,7 @@ def user_books_view(request):
     return render(request, 'books/user_books_view.html', dic)
 
 
+@login_required
 def comment_update_view(request, pk, comment_id):
     books = get_object_or_404(Book, pk=pk)
     comment = books.comments.all().filter(pk=comment_id).get()
@@ -81,3 +82,12 @@ def comment_update_view(request, pk, comment_id):
         return redirect('books_detail', pk)
     return render(request, 'books/comment_update_view.html', {'form': form})
 
+
+@login_required
+def comment_delete_view(request, pk, comment_id):
+    books = get_object_or_404(Book, pk=pk)
+    comment = books.comments.all().filter(pk=comment_id).get()
+    if request.method == 'POST':
+        comment.delete()
+        return redirect('books_detail', pk)
+    return render(request, 'books/comment_delete_view.html', {'books': books})
