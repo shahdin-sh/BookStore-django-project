@@ -35,9 +35,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex justify-content-center">
-                    <div class="my-3 p-5 w-sm-75 w-100" id="description_div">
-                       {{ books_detail.description }}
+                <div class="d-flex justify-content-center"  id="description_div">
+                    <div class="my-3 p-5 w-sm-75 w-100">
+                        توضیحات کتاب:  {{ books_detail.description }}
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
@@ -55,8 +55,8 @@
                                 <h6 class="mb-3">  زمان انتشار: {{ i.datetime_comment }}</h6>
                                 <p>{{ i.comment_text|linebreaks }}</p>
                                  {% if i.user.id == user.id %}
-                                     <a href="{% url 'update_comments' books_detail.id i.id %}"><button class="btn-dark">ویرایش نظر</button></a>
-                                     <a href="{% url 'delete_comments' books_detail.id i.id %}"><button class="btn-dark">حذف نظر</button></a>
+                                     <a href="{% url 'update_comments' books_detail.id i.id %}"><button class="btn-info">ویرایش نظر</button></a>
+                                     <a href="{% url 'delete_comments' books_detail.id i.id %}"><button class="btn-info">حذف نظر</button></a>
                                 {% endif %}
                             </div>
                             {% endfor %}
@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <div class="card shadow my-3 p-5 w-sm-75 w-100">
+                    <div class="card shadow my-3 p-5 w-sm-75 w-100" id="entering_comments">
                         <h3>نظر خود را وارد کنید:</h3>
                         {% if user.is_authenticated %}
                             <form method="POST">
@@ -83,11 +83,12 @@
         </div>
     </div>
     <style>
-        #main_div {
-            background-color: whitesmoke;
+        #main_div, #description_div, #comments_box, #entering_comments{
+            background-color: #231c61;
+            color: white;
         }
         #description_div{
-            background-color: whitesmoke;
+            margin-top: 0%;
         }
         .happy_face{
             color: white;
@@ -101,11 +102,8 @@
             background-color: red;
             width: fit-content;
         }
-        #comments_box{
-            border: 3px solid 	#000080;
-        }
         #each_comments_box{
-            border: 1px solid darkgoldenrod;
+            border: 1.5px solid #ffb300;
             padding: 3%;
         }
     </style>
