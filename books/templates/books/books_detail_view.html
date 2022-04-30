@@ -56,7 +56,7 @@
                                 <p>{{ i.comment_text|linebreaks }}</p>
                                  {% if i.user.id == user.id %}
                                      <a href="{% url 'update_comments' books_detail.id i.id %}"><button class="btn-info">ویرایش نظر</button></a>
-                                     <a href="{% url 'delete_comments' books_detail.id i.id %}"><button class="btn-info">حذف نظر</button></a>
+                                     <a href="{% url 'delete_comments' books_detail.id i.id %}"><button class="btn-danger">حذف نظر</button></a>
                                 {% endif %}
                             </div>
                             {% endfor %}

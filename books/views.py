@@ -22,7 +22,7 @@ def books_list_view(request):
 def books_detail_view(request, pk):
     books_detail = get_object_or_404(Book, pk=pk)
     # getting_comments
-    comments = books_detail.comments.all()
+    comments = books_detail.comments.all().order_by('-datetime_comment')
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
