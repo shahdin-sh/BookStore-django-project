@@ -54,8 +54,9 @@
                                 {% endif %}
                                 <h6 class="mb-3">  زمان انتشار: {{ i.datetime_comment }}</h6>
                                 <p>{{ i.comment_text|linebreaks }}</p>
-                                <a href="{% url 'update_comments' books_detail.id %}"><button class="btn-success">ویرایش نظر</button></a>
-                                <a href="{% url 'delete_comments' books_detail.id %}"><button class="btn-danger">حذف نظر</button></a>
+                                 {% if i.user.id == user.id %}
+                                     <a href="{% url 'update_comments' books_detail.id i.id %}"><button class="btn-success">ویرایش نظر</button></a>
+                                {% endif %}
                             </div>
                             {% endfor %}
                         {% elif not comments %}

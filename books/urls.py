@@ -11,6 +11,5 @@ urlpatterns = [
     path('<int:pk>/update', login_required(BookUpdateView.as_view()), name='update_books'),
     path('<int:pk>/delete', login_required(BookDeleteView.as_view()), name='delete_books'),
     path('mybooks/', user_books_view, name='user_books'),
-    path('<int:pk>/update/comment', login_required(CommentUpdateView.as_view()), name='update_comments'),
-    path('<int:pk>/delete/comment', login_required(CommentDeleteView.as_view()), name='delete_comments'),
+    path('<int:pk>/update/<int:comment_id>/comment', comment_update_view, name='update_comments')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
