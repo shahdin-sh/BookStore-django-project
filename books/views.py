@@ -103,9 +103,17 @@ def comment_update_view(request, pk, comment_id):
 
 @login_required
 def comment_delete_view(request, pk, comment_id):
-    books = get_object_or_404(Book, pk=pk)
-    comment = books.comments.all().filter(pk=comment_id).get()
-    if request.method == 'POST':
-        comment.delete()
-        return redirect('books_detail', pk)
-    return render(request, 'books/comment_delete_view.html', {'books': books})
+    auth = 0
+    auth_check = Comment.objects.all().filter(user_id=request.user.id)
+    for i in auth_check:
+        if i.pk == comment_id:
+            auth = i.pk
+    if auth != 0:
+        books = get_object_or_404(Book, pk=pk)
+        comment = books.comments.all().filter(pk=comment_id).get()
+        if request.method == 'POST':
+            comment.delete()
+            return redirect('books_detail', pk)
+        return render(request, 'books/comment_delete_view.html', {'books': books})
+    else:
+        raise Http404()
