@@ -6,13 +6,15 @@
     margin-top: 10%;
     font-size: 1.1rem;
     font-weight: bold;
-    background-color: #E7E8D1;
+    background-color: #edea2b;
 }
 .icon{
     display: flex;
     flex-direction: row-reverse;
     font-size: 1.5rem;
-    gap: 5%;
+    gap: 1%;
+    margin-left: 5%;
+
 
 }
 .icon a{
@@ -22,8 +24,12 @@
 }
 @media screen and (min-width:600px) {
     .icon{
-        font-size: 3rem;
-        gap: 2%;
+        font-size: 4rem;
+        gap: 1%;
         margin-left: 5%;
+
     }
+    .icon a{
+    margin-bottom: 3%;
+}
 }
