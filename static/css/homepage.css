@@ -1,19 +1,20 @@
 body{
     margin: 0;
     padding: 0;
-    background-color: whitesmoke;
+    background-color: #E7E8D1;
     box-sizing: border-box;
 }
 .main-title{
     text-align: center;
     margin-top: 5%;
+    color: white;
 }
 .main_image_container{
     text-align: right;
     max-width: 100%;
     max-height: 100%;
     margin-top: 10%;
-   background-color:wheat;
+   background-color:#E7E8D1;
 }
 .main_image_container img{
     max-width: 100%;
@@ -22,7 +23,7 @@ body{
     border-bottom-left-radius: 1rem;
 }
 .main_description_container{
-    background-color: wheat;
+    background-color:#E7E8D1;
     font-size: 1.1rem;
     font-weight: bold;
     direction: rtl;
