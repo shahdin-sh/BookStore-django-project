@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, reverse
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 
 
 def books_list_view(request):
@@ -46,16 +47,24 @@ class BookCreateView(generic.CreateView):
     template_name = 'books/books_create_view.html'
 
 
-class BookUpdateView(generic.UpdateView):
+class BookUpdateView(UserPassesTestMixin, generic.UpdateView):
     model = Book
     fields = ['title', 'author', 'translator', 'description']
     template_name = 'books/books_update_view.html'
 
+    def test_func(self):
+        obj = self.get_object()
+        return obj.books_author == self.request.user
 
-class BookDeleteView(generic.DeleteView):
+
+class BookDeleteView(UserPassesTestMixin, generic.DeleteView):
     model = Book
     template_name = 'books/books_delete_view.html'
     success_url = reverse_lazy('books_list')
+
+    def test_func(self):
+        obj = self.get_object()
+        return obj.books_author == self.request.user
 
 
 @login_required
