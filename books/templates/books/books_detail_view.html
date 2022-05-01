@@ -45,6 +45,7 @@
                         <h2 class="mb-5">نظرات:</h2>
                         {% if comments %}
                             {% for i in comments %}
+                                {{ i.id }}
                             <div class="border-bottom mb-3" id="each_comments_box">
                                 <h5 class="mb-3">{{ i.user.username }}</h5>
                                 {% if i.recommended %}

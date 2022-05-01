@@ -5,8 +5,9 @@ from .forms import BookForm, CommentForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.shortcuts import get_object_or_404, redirect, reverse
-from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.shortcuts import get_object_or_404, redirect
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.http import Http404
 
 
 def books_list_view(request):
@@ -83,13 +84,21 @@ def user_books_view(request):
 
 @login_required
 def comment_update_view(request, pk, comment_id):
-    books = get_object_or_404(Book, pk=pk)
-    comment = books.comments.all().filter(pk=comment_id).get()
-    form = CommentForm(request.POST or None, instance=comment)
-    if form.is_valid():
-        form.save()
-        return redirect('books_detail', pk)
-    return render(request, 'books/comment_update_view.html', {'form': form})
+    auth = 0
+    auth_check = Comment.objects.all().filter(user_id=request.user.id)
+    for i in auth_check:
+        if i.pk == comment_id:
+            auth = i.pk
+    if auth != 0:
+        books = get_object_or_404(Book, pk=pk)
+        comment = books.comments.all().filter(pk=comment_id).get()
+        form = CommentForm(request.POST or None, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect('books_detail', pk)
+        return render(request, 'books/comment_update_view.html', {'form': form})
+    else:
+        raise Http404()
 
 
 @login_required
